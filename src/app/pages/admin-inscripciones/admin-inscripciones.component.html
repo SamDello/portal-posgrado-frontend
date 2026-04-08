@@ -1,0 +1,65 @@
+<section class="admin-page">
+  <div class="admin-container">
+    <header class="page-header">
+      <div>
+        <h1>Administrar Inscripciones</h1>
+        <p>Aprueba, rechaza o revisa las solicitudes de inscripción de los estudiantes.</p>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/dashboard" class="back-btn">Volver al dashboard</a>
+        <a routerLink="/admin/programas" class="back-btn alt">Administrar programas</a>
+      </div>
+    </header>
+
+    <div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="message success" *ngIf="successMessage">{{ successMessage }}</div>
+    <div class="loading-box" *ngIf="isLoading">Cargando inscripciones...</div>
+
+    <div class="table-wrap" *ngIf="!isLoading">
+      <table class="inscripciones-table">
+        <thead>
+          <tr>
+            <th>Estudiante</th>
+            <th>Email</th>
+            <th>CI</th>
+            <th>Programa</th>
+            <th>Modalidad</th>
+            <th>Duración</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of inscripciones">
+            <td>{{ item.nombres }} {{ item.apellidos }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.ci }}</td>
+            <td>{{ item.programa_nombre }}</td>
+            <td>{{ item.modalidad }}</td>
+            <td>{{ item.duracion }}</td>
+            <td>{{ item.fecha_inscripcion | date:'short' }}</td>
+            <td>
+              <span class="estado" [ngClass]="item.estado">{{ item.estado }}</span>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <button class="approve-btn" (click)="cambiarEstado(item.id, 'aprobado')">
+                  Aprobar
+                </button>
+                <button class="reject-btn" (click)="cambiarEstado(item.id, 'rechazado')">
+                  Rechazar
+                </button>
+                <button class="pending-btn" (click)="cambiarEstado(item.id, 'pendiente')">
+                  Pendiente
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

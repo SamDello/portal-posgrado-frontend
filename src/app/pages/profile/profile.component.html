@@ -1,0 +1,77 @@
+<section class="profile-page">
+  <div class="profile-container">
+    <header class="profile-header">
+      <div>
+        <h1>Mi Perfil</h1>
+        <p>Consulta tu información personal y académica registrada en el sistema.</p>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/dashboard" class="back-btn">Volver al dashboard</a>
+        <button type="button" class="logout-btn" (click)="logout()">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <div class="loading-box" *ngIf="isLoading">
+      Cargando perfil...
+    </div>
+
+    <div class="error-box" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <div class="profile-card" *ngIf="profile && !isLoading">
+      <div class="profile-grid">
+        <div class="profile-item">
+          <span>Nombres</span>
+          <strong>{{ profile.nombres }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Apellidos</span>
+          <strong>{{ profile.apellidos }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Correo electrónico</span>
+          <strong>{{ profile.email }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>CI</span>
+          <strong>{{ profile.ci }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Teléfono</span>
+          <strong>{{ profile.telefono || 'No registrado' }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Fecha de nacimiento</span>
+          <strong>{{ profile.fecha_nacimiento || 'No registrada' }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Profesión</span>
+          <strong>{{ profile.profesion || 'No registrada' }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Rol</span>
+          <strong>{{ profile.rol }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Estado</span>
+          <strong>{{ profile.activo ? 'Activo' : 'Inactivo' }}</strong>
+        </div>
+
+        <div class="profile-item">
+          <span>Fecha de registro</span>
+          <strong>{{ profile.created_at | date:'medium' }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

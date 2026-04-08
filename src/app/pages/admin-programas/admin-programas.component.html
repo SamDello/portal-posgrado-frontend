@@ -1,0 +1,81 @@
+<section class="admin-page">
+  <div class="admin-container">
+    <header class="page-header">
+      <div>
+        <h1>Administrar Programas</h1>
+        <p>Crea, edita y desactiva programas académicos desde la plataforma.</p>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/dashboard" class="back-btn">Volver al dashboard</a>
+      </div>
+    </header>
+
+    <div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="message success" *ngIf="successMessage">{{ successMessage }}</div>
+
+    <div class="admin-grid">
+      <section class="form-card">
+        <h2>{{ editingId ? 'Editar programa' : 'Nuevo programa' }}</h2>
+
+        <div class="form-grid">
+          <input type="text" placeholder="Nombre" [(ngModel)]="form.nombre" />
+          <input type="text" placeholder="Modalidad" [(ngModel)]="form.modalidad" />
+          <input type="text" placeholder="Duración" [(ngModel)]="form.duracion" />
+
+          <textarea
+            rows="5"
+            placeholder="Descripción"
+            [(ngModel)]="form.descripcion"
+          ></textarea>
+
+          <label class="check-row">
+            <input type="checkbox" [(ngModel)]="form.activo" />
+            Programa activo
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button type="button" class="primary-btn" (click)="savePrograma()">
+            {{ editingId ? 'Actualizar programa' : 'Crear programa' }}
+          </button>
+
+          <button type="button" class="secondary-btn" (click)="resetForm()">
+            Limpiar
+          </button>
+        </div>
+      </section>
+
+      <section class="list-card">
+        <h2>Listado de programas</h2>
+
+        <div class="loading-box" *ngIf="isLoading">Cargando programas...</div>
+
+        <div class="program-list" *ngIf="!isLoading">
+          <article class="program-item" *ngFor="let programa of programas">
+            <div class="program-info">
+              <h3>{{ programa.nombre }}</h3>
+              <p>{{ programa.descripcion }}</p>
+              <span><strong>Modalidad:</strong> {{ programa.modalidad }}</span>
+              <span><strong>Duración:</strong> {{ programa.duracion }}</span>
+              <span>
+                <strong>Estado:</strong>
+                {{ programa.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </div>
+
+            <div class="program-actions">
+              <button type="button" class="edit-btn" (click)="editPrograma(programa)">
+                Editar
+              </button>
+
+              <button type="button" class="delete-btn" (click)="deletePrograma(programa.id)">
+                Desactivar
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

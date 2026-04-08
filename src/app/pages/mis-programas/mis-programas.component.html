@@ -1,0 +1,48 @@
+<section class="mis-programas-page">
+  <div class="mis-programas-container">
+    <header class="page-header">
+      <div>
+        <h1>Mis Programas</h1>
+        <p>Consulta los programas a los que te has inscrito.</p>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/dashboard" class="back-btn">Volver al dashboard</a>
+        <a routerLink="/programas" class="back-btn alt">Ver programas</a>
+      </div>
+    </header>
+
+    <div class="loading-box" *ngIf="isLoading">Cargando tus programas...</div>
+    <div class="error-box" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div class="empty-box" *ngIf="!isLoading && programas.length === 0">
+      Aún no estás inscrito en ningún programa.
+    </div>
+
+    <div class="programas-grid" *ngIf="!isLoading && programas.length > 0">
+      <article class="programa-card" *ngFor="let programa of programas">
+        <h3>{{ programa.nombre }}</h3>
+        <p>{{ programa.descripcion }}</p>
+
+        <div class="meta">
+          <span><strong>Modalidad:</strong> {{ programa.modalidad }}</span>
+          <span><strong>Duración:</strong> {{ programa.duracion }}</span>
+          <span><strong>Estado:</strong> {{ programa.estado }}</span>
+          <span><strong>Inscrito el:</strong> {{ programa.fecha_inscripcion | date:'medium' }}</span>
+        </div>
+
+        <a
+          *ngIf="programa.estado === 'aprobado'"
+          class="enter-btn"
+          [routerLink]="['/mis-programas', programa.id]"
+        >
+          Entrar al programa
+        </a>
+
+        <span *ngIf="programa.estado !== 'aprobado'" class="locked-msg">
+          Disponible cuando la inscripción esté aprobada
+        </span>
+      </article>
+    </div>
+  </div>
+</section>

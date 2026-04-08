@@ -1,0 +1,73 @@
+<section class="virtual-page">
+  <header class="virtual-header">
+    <div class="virtual-header-left">
+      <img src="/assets/images/logo-posgrado.png" alt="Logo Posgrado" class="main-logo" />
+      <span class="page-title">Página Principal</span>
+    </div>
+
+    <div class="virtual-header-right">
+      <button class="lang-btn" type="button">
+        <i class="bi bi-translate"></i>
+        Español - Internacional (es)
+        <i class="bi bi-chevron-down"></i>
+      </button>
+
+      <a class="access-link" routerLink="/login">Acceder</a>
+      <button class="logout-btn" type="button" (click)="logout()">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <div class="virtual-body container-fluid-custom">
+    <div class="left-panel">
+      <div class="left-panel-content">
+        <h1>Aula<br />Virtual de<br />Posgrado</h1>
+
+        <p>
+          Bienvenidos a la plataforma de aprendizaje en línea para los programas de
+          posgrado. Encuentra aquí los recursos necesarios para tu éxito académico.
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="secondary-text">
+          Explora los foros de discusión, accede a materiales de estudio, y participa
+          en actividades interactivas diseñadas para complementar tu aprendizaje.
+        </p>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="cards-grid">
+        <article class="info-card" *ngFor="let card of cards">
+          <div class="card-image">
+            <img [src]="card.image" [alt]="card.title" />
+          </div>
+
+          <div class="card-content">
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+
+            <a
+              class="visit-btn"
+              [href]="card.link"
+              [target]="card.link.startsWith('http') ? '_blank' : '_self'"
+              rel="noopener noreferrer"
+            >
+              Visitar
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <a
+    class="floating-help"
+    href="https://aulavirtual.uabjb.edu.bo/posgrado/login/index.php"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Ayuda"
+  >
+    ?
+  </a>
+</section>

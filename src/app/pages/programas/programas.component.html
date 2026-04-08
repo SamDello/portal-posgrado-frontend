@@ -1,0 +1,35 @@
+<section class="programas-page">
+  <div class="programas-container">
+    <header class="page-header">
+      <div>
+        <h1>Programas Académicos</h1>
+        <p>Explora la oferta académica disponible e inscríbete a un programa.</p>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/dashboard" class="back-btn">Volver al dashboard</a>
+        <a routerLink="/mis-programas" class="back-btn alt">Mis programas</a>
+      </div>
+    </header>
+
+    <div class="loading-box" *ngIf="isLoading">Cargando programas...</div>
+    <div class="error-box" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="success-box" *ngIf="successMessage">{{ successMessage }}</div>
+
+    <div class="programas-grid" *ngIf="!isLoading">
+      <article class="programa-card" *ngFor="let programa of programas">
+        <h3>{{ programa.nombre }}</h3>
+        <p>{{ programa.descripcion }}</p>
+
+        <div class="meta">
+          <span><strong>Modalidad:</strong> {{ programa.modalidad }}</span>
+          <span><strong>Duración:</strong> {{ programa.duracion }}</span>
+        </div>
+
+        <button type="button" (click)="inscribirse(programa.id)">
+          Inscribirme
+        </button>
+      </article>
+    </div>
+  </div>
+</section>

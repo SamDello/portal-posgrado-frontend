@@ -1,0 +1,60 @@
+<app-hero-banner
+  title="Formación de excelencia para líderes del mañana"
+  subtitle="Explora nuestra oferta académica, programas de posgrado y oportunidades internacionales en una plataforma moderna y profesional."
+  buttonText="Explorar programas">
+</app-hero-banner>
+
+<section class="intro">
+  <div class="container intro-grid">
+    <div class="intro-card">
+      <i class="bi bi-building"></i>
+      <h3>Infraestructura moderna</h3>
+      <p>Espacios diseñados para una experiencia académica de primer nivel.</p>
+    </div>
+    <div class="intro-card">
+      <i class="bi bi-globe-americas"></i>
+      <h3>Proyección internacional</h3>
+      <p>Convenios y alianzas para ampliar tus oportunidades.</p>
+    </div>
+    <div class="intro-card">
+      <i class="bi bi-people-fill"></i>
+      <h3>Comunidad académica</h3>
+      <p>Docentes, investigadores y estudiantes conectados con la innovación.</p>
+    </div>
+  </div>
+</section>
+
+<section class="programs">
+  <div class="container">
+    <div class="section-header">
+      <span>Nuestra oferta</span>
+      <h2>Programas destacados</h2>
+    </div>
+
+    <div class="program-grid">
+      <app-program-card
+        *ngFor="let program of programs"
+        [title]="program.title"
+        [description]="program.description"
+        [icon]="program.icon">
+      </app-program-card>
+    </div>
+  </div>
+</section>
+
+<section class="news">
+  <div class="container">
+    <div class="section-header">
+      <span>Actualidad</span>
+      <h2>Noticias y eventos</h2>
+    </div>
+
+    <div class="news-grid">
+      <div class="news-card" *ngFor="let item of news">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+        <a href="#">Leer más</a>
+      </div>
+    </div>
+  </div>
+</section>

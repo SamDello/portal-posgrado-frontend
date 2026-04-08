@@ -1,0 +1,56 @@
+<section class="detalle-page">
+  <div class="detalle-container">
+    <header class="page-header">
+      <div>
+        <h1>{{ programa?.nombre || 'Detalle del Programa' }}</h1>
+        <p>{{ programa?.descripcion || 'Contenido académico del programa' }}</p>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/mis-programas" class="back-btn">Volver a mis programas</a>
+      </div>
+    </header>
+
+    <div class="loading-box" *ngIf="isLoading">Cargando contenido...</div>
+    <div class="error-box" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div class="program-meta" *ngIf="programa && !isLoading">
+      <span><strong>Modalidad:</strong> {{ programa.modalidad }}</span>
+      <span><strong>Duración:</strong> {{ programa.duracion }}</span>
+    </div>
+
+    <div class="modulos-list" *ngIf="!isLoading && modulos.length > 0">
+      <article class="modulo-card" *ngFor="let modulo of modulos">
+        <h2>{{ modulo.orden }}. {{ modulo.titulo }}</h2>
+        <p>{{ modulo.descripcion }}</p>
+
+        <div class="materiales" *ngIf="modulo.materiales.length > 0">
+          <div class="material-item" *ngFor="let material of modulo.materiales">
+            <div>
+              <h4>{{ material.titulo }}</h4>
+              <p>{{ material.descripcion }}</p>
+              <span class="tipo">{{ material.tipo }}</span>
+            </div>
+
+            <a
+              class="open-btn"
+              [href]="material.url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir
+            </a>
+          </div>
+        </div>
+
+        <div class="empty-materials" *ngIf="modulo.materiales.length === 0">
+          Este módulo aún no tiene materiales cargados.
+        </div>
+      </article>
+    </div>
+
+    <div class="empty-box" *ngIf="!isLoading && modulos.length === 0">
+      Este programa aún no tiene módulos cargados.
+    </div>
+  </div>
+</section>

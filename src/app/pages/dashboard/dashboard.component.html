@@ -1,0 +1,36 @@
+<section class="dashboard-page">
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <div>
+        <p class="welcome">Bienvenido</p>
+        <h1>{{ user?.nombres }} {{ user?.apellidos }}</h1>
+        <span class="role">Rol: {{ user?.rol }}</span>
+      </div>
+
+      <button class="logout-btn" type="button" (click)="handleCard({ logout: true })">
+        Cerrar sesión
+      </button>
+    </header>
+
+    <section class="dashboard-hero">
+      <div class="hero-text">
+        <h2>Panel del Estudiante</h2>
+        <p>
+          Desde aquí puedes administrar tu acceso, revisar tu información personal
+          y entrar al Aula Virtual de Posgrado.
+        </p>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="dashboard-card" *ngFor="let card of cards" (click)="handleCard(card)">
+        <i class="bi" [ngClass]="card.icon"></i>
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.description }}</p>
+        <button type="button">
+          {{ card.logout ? 'Salir' : 'Ingresar' }}
+        </button>
+      </article>
+    </section>
+  </div>
+</section>

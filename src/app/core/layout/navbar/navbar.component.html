@@ -1,0 +1,41 @@
+<header class="site-header">
+  <div class="container header-content">
+    <a routerLink="/" class="brand">
+      <div class="logo-box">
+        <img src="/assets/images/logo.png" alt="Logo UABJB Posgrado" />
+      </div>
+
+      <div class="brand-text">
+        <h1>Vicerrectorado de Posgrado</h1>
+        <p>Universidad Autónoma del Beni "José Ballivián"</p>
+        <span>¡Academia de Verdad!</span>
+      </div>
+    </a>
+
+    <nav class="header-menu" [class.open]="mobileMenuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <i class="bi bi-house-fill"></i> Inicio
+      </a>
+      <a routerLink="/universidad" routerLinkActive="active">
+        <i class="bi bi-info-circle-fill"></i> Nosotros
+      </a>
+      <a routerLink="/grado" routerLinkActive="active">
+        <i class="bi bi-flask-fill"></i> Investigación
+      </a>
+      <a routerLink="/posgrado" routerLinkActive="active">
+        <i class="bi bi-mortarboard-fill"></i> Programas
+      </a>
+      <a routerLink="/estudiantes" routerLinkActive="active">
+        <i class="bi bi-pc-display"></i> Aula Virtual
+      </a>
+      <a routerLink="/internacional" routerLinkActive="active">
+        <i class="bi bi-envelope-fill"></i> Contáctanos
+      </a>
+
+    </nav>
+
+    <button class="mobile-toggle" (click)="toggleMobileMenu()">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+</header>

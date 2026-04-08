@@ -1,0 +1,49 @@
+<section class="register-page">
+  <div class="register-overlay">
+    <div class="register-card">
+      <div class="register-left">
+        <img
+          src="/assets/images/logo-posgrado.png"
+          alt="Logo Posgrado"
+          class="register-logo"
+        />
+
+        <h2>Registro de Estudiante</h2>
+
+        <form class="register-form" (ngSubmit)="register()">
+          <div class="grid">
+            <input type="text" placeholder="Nombres *" [(ngModel)]="nombres" name="nombres" />
+            <input type="text" placeholder="Apellidos *" [(ngModel)]="apellidos" name="apellidos" />
+            <input type="email" placeholder="Correo electrónico *" [(ngModel)]="email" name="email" />
+            <input type="password" placeholder="Contraseña *" [(ngModel)]="password" name="password" />
+            <input type="text" placeholder="CI *" [(ngModel)]="ci" name="ci" />
+            <input type="text" placeholder="Teléfono" [(ngModel)]="telefono" name="telefono" />
+            <input type="date" [(ngModel)]="fecha_nacimiento" name="fecha_nacimiento" />
+            <input type="text" placeholder="Profesión" [(ngModel)]="profesion" name="profesion" />
+          </div>
+
+          <button type="submit" [disabled]="isLoading">
+            {{ isLoading ? 'Registrando...' : 'Crear cuenta' }}
+          </button>
+
+          <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+          <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+          <a class="login-link" routerLink="/login">
+            ¿Ya tienes cuenta? Inicia sesión
+          </a>
+        </form>
+      </div>
+
+      <div class="register-right">
+        <div class="info-box">
+          <h3>Únete al Aula Virtual</h3>
+          <p>
+            Registra tus datos para acceder a tus cursos, materiales académicos y recursos
+            de posgrado desde la plataforma.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
